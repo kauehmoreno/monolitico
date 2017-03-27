@@ -31,3 +31,14 @@ class Materia(models.Model):
 
     def permalink(self):
         pass
+
+    def to_dict(self):
+        return {
+            'id': self._id,
+            'titulo': self.titulo,
+            'subtitulo': self.subtitulo,
+            'corpo': self.corpo,
+            'slug': self.slug,
+            'cover': self.cover,
+            'data_publicacao': self.data_publicacao
+        }
