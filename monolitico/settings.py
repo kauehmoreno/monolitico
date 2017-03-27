@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'monolitico.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'materia',
+        'NAME': 'monolitico',
         'USER': 'root',
         'PASSWORD':'',
         'HOST': '127.0.0.1',
