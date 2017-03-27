@@ -19,6 +19,7 @@ class Materia(models.Model):
         default=uuid4,
         editable=False
     )
+    corpo = models.TextField('Corpo da matéria', blank=True)
 
     class Meta:
         verbose_name = 'Matéria'
