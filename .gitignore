@@ -37,4 +37,9 @@ jspm_packages
 .node_repl_history
 
 # pyc
-.pyc
+*.py[cod]
+*.egg
+*.egg-info/
+env/
+sdist/
+.Python
