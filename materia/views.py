@@ -10,8 +10,6 @@ class MainPageView(generic.ListView):
 
     template_name = 'materia/home.html'
     context_object_name = 'materias'
-    #paginate_by = 20
-
 
     def get_queryset(self):
         return DbBridge.all(Materia)
