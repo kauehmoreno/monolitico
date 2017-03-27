@@ -14,14 +14,15 @@ class  DbBridge(object):
             )
         materias = resoure_class.objects.all().order_by('-data_publicacao')
         for materia in materias:
-            yield materia
+            yield materia.to_dict()
 
     @classmethod
     def filter(cls, **kwargs):
         slug = kwargs.get('slug')
         resource_class = kwargs.get('resource_class')
+        uuid = kwargs.get('uuid')
         try:
-            return resource_class.objects.get(slug=slug)
+            return resource_class.objects.get(slug=slug, _id=uuid).to_dict()
         except Exception as e:
             raise e
 
