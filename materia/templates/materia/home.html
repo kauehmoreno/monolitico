@@ -1,0 +1,21 @@
+{% extends 'materia/base.html' %}
+{% block content %}
+    {{ block.super }}
+    {% for materia in materias %}
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>{{ materia.titulo }}</h3>
+                <h4>{{ materia.subtitulo }}</h4>
+                <p>{{ materia.corpo|truncatechars:400 }}</p>
+                <a class="btn btn-primary" href="#">Veja na integra <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock%}
+
