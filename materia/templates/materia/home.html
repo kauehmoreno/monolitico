@@ -12,7 +12,7 @@
                 <h3>{{ materia.titulo }}</h3>
                 <h4>{{ materia.subtitulo }}</h4>
                 <p>{{ materia.corpo|truncatechars:400 }}</p>
-                <a class="btn btn-primary" href="#">Veja na integra <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-primary" href="{% url 'single_article' uuid=materia.id slug=materia.slug %}">Veja na integra <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
         <hr>
