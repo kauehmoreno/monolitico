@@ -14,7 +14,7 @@ class  DbBridge(object):
             )
         materias = resoure_class.objects.all().order_by('-data_publicacao')
         for materia in materias:
-            yield materia.to_dict()
+            yield materia.to_dict_home()
 
     @classmethod
     def filter(cls, **kwargs):
