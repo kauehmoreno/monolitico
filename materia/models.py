@@ -1,7 +1,9 @@
 # -#- coding:utf-8 -*-
 from __future__ import unicode_literals
+import json
 from django.db import models
 from uuid import uuid4
+from django.core.urlresolvers import reverse
 
 #TODO create signal to build slug automatically
 class Materia(models.Model):
@@ -30,15 +32,24 @@ class Materia(models.Model):
         return 'Materia: {}'.format(self.slug)
 
     def permalink(self):
-        pass
+        return reverse(
+            'single_article',
+            kwargs={
+                'uuid':self._id,
+                'slug': self.slug
+            }
+        )
+
 
     def to_dict(self):
-        return {
-            'id': self._id,
+        return json.dumps({
             'titulo': self.titulo,
-            'subtitulo': self.subtitulo,
-            'corpo': self.corpo,
-            'slug': self.slug,
-            'cover': self.cover,
-            'data_publicacao': self.data_publicacao
-        }
+            'data_publicacao': self.data_publicacao.strftime('%Y-%m-%d %H:%M:%S'),
+            'data_criacao': self.data_criacao.strftime('%Y-%m-%d %H:%M:%S'),
+            'data_modificacao': self.data_modificacao.strftime('%Y-%m-%d %H:%M:%S'),
+            'subtitulo': self.subtitulo if self.subtitulo else '',
+            'cover': self.cover.name,
+            'uuid': str(self._id),
+            'corpo': self.corpo if self.corpo else '',
+            'slug': self.slug
+        })
