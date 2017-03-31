@@ -9,16 +9,34 @@ from django.conf import settings
 
 @receiver(post_save, sender=Materia)
 def materia_save_actions(sender, **kwargs):
-    instance = kwargs.get('instance')
-    host = '{}/insert/'.format(settings.MICROSERVICO_HOST_INTEGRATION)
-    try:
-        r = requests.post(
+
+    def context_sender(context=None):
+        host = '{}/insert/'.format(settings.MICROSERVICO_HOST_INTEGRATION)
+
+        requests.post(
             host,
-            data = instance.to_dict()
+            data = context.to_dict()
         )
+
+    def file_sender(context=None):
+        if context.cover.name:
+            requests.post(
+                '{}/api/file_upload/'.format(settings.MICROSERVICO_BASE_HOST),
+                files=({'file': open(context.cover.path)})
+            )
+
+    instance = kwargs.get('instance')
+    try:
+        context_sender(context=instance)
     except Exception as e:
         msg = 'Não foi possível enviar os dados à applicacao microservico {}'
         logging.error(msg.format(e))
+    else:
+        try:
+            file_sender(context=instance)
+        except Exception as e:
+            msg = 'Não foi possível enviar os dados à applicacao microservico {}'
+            logging.error(msg.format(e))
 
 
 
