@@ -1,10 +1,17 @@
 {% extends 'materia/base.html' %}
+{% load thumbnail %}
 
 {% block content %}
     <hr>
-    <header class="image-bg-fluid-height">
-        <img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt="">
-    </header>
+    {% if materia.cover %}
+        <header class="image-bg-fluid-height">
+            <img src="{{ materia.cover|thumbnail_url:'single_article' }}" alt="{{materia.titulo}}" />
+        </header>
+    {% else %}
+        <header class="image-bg-fluid-height">
+            <img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt="">
+        </header>
+    {% endif %}
     <section>
         <div class="row">
             <div class="col-lg-12">
