@@ -1,11 +1,17 @@
 {% extends 'materia/base.html' %}
+{% load thumbnail %}
+
 {% block content %}
     {{ block.super }}
     {% for materia in materias %}
         <div class="row">
             <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                <a href="{% url 'single_article' uuid=materia.id slug=materia.slug %}">
+                    {% if materia.cover %}
+                        <img src="{{ materia.cover|thumbnail_url:'single_article' }}" alt="{{materia.titulo}}" />
+                    {% else %}
+                        <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                    {% endif %}
                 </a>
             </div>
             <div class="col-md-5">
