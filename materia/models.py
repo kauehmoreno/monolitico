@@ -42,7 +42,7 @@ class Materia(models.Model):
 
 
     def to_dict(self):
-        return json.dumps({
+        return {
             'titulo': self.titulo,
             'data_publicacao': self.data_publicacao.strftime('%Y-%m-%d %H:%M:%S'),
             'data_criacao': self.data_criacao.strftime('%Y-%m-%d %H:%M:%S'),
@@ -52,7 +52,7 @@ class Materia(models.Model):
             'uuid': str(self._id),
             'corpo': self.corpo if self.corpo else '',
             'slug': self.slug
-        })
+        }
 
 
     def to_dict_home(self):
