@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #apps
     'materia',
+    #libs
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'single_article': {'size': (700, 300), 'crop': True},
+    },
+}
