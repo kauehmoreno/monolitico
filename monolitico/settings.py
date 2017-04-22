@@ -119,7 +119,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-MICROSERVICO_BASE_HOST= 'http://localhost:8888'
+MICROSERVICO_BASE_HOST= 'http://107.170.50.44'
 MICROSERVICO_HOST_INTEGRATION = '{}/api/v1'.format(MICROSERVICO_BASE_HOST)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
