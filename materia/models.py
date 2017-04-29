@@ -42,26 +42,28 @@ class Materia(models.Model):
 
 
     def to_dict(self):
-        return {
-            'titulo': self.titulo,
-            'data_publicacao': self.data_publicacao.strftime('%Y-%m-%d %H:%M:%S'),
-            'data_criacao': self.data_criacao.strftime('%Y-%m-%d %H:%M:%S'),
-            'data_modificacao': self.data_modificacao.strftime('%Y-%m-%d %H:%M:%S'),
-            'subtitulo': self.subtitulo if self.subtitulo else '',
-            'cover': self.cover.name,
-            'uuid': str(self._id),
-            'corpo': self.corpo if self.corpo else '',
-            'slug': self.slug
-        }
-
+        return dict(zip(
+            [
+                'titulo', 'data_publicacao', 'data_criacao', 'data_modificacao',
+                'subtitulo', 'cover', 'uuid', 'corpo', 'slug'
+            ],
+            [
+                self.titulo, self.data_publicacao.strftime('%Y-%m-%d %H:%M:%S'),
+                self.data_criacao.strftime('%Y-%m-%d %H:%M:%S'),
+                self.data_modificacao.strftime('%Y-%m-%d %H:%M:%S'),
+                self.subtitulo if self.subtitulo else '', self.cover.name,
+                str(self._id), self.corpo if self.corpo else '', self.slug
+            ]
+        ))
 
     def to_dict_home(self):
-        return {
-            'id': self._id,
-            'titulo': self.titulo,
-            'subtitulo': self.subtitulo,
-            'corpo': self.corpo,
-            'slug': self.slug,
-            'cover': self.cover,
-            'data_publicacao': self.data_publicacao
-        }
+        return dict(zip(
+            [
+                'id','titulo', 'subtitulo', 'corpo','slug', 'cover',
+                'data_publicacao'
+            ],
+            [
+                self._id, self.titulo, self.subtitulo, self.corpo, self.slug,
+                self.cover, self.data_publicacao
+            ]
+        ))
