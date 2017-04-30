@@ -15,7 +15,7 @@ def materia_save_actions(sender, **kwargs):
 
         requests.post(
             host,
-            data = context.to_dict()
+            data = json.dumps(context.to_dict())
         )
 
     def file_sender(context=None):
