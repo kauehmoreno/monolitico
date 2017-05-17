@@ -73,3 +73,9 @@ def integrate_all(modeladmin, request, queryset):
         materia.save()
 
 integrate_all.short_description = 'Integração com Microserviço'
+
+
+class MateriaAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'data_criacao')
+    search_fields = ('titulo', 'subtitulo', 'data_criacao', 'slug')
+    actions = [integrate_all]
