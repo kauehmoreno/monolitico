@@ -1,6 +1,7 @@
 # -#- coding:utf-8 -*-
 from __future__ import unicode_literals
 import json
+from django.contrib import admin
 from django.db import models
 from uuid import uuid4
 from django.core.urlresolvers import reverse
