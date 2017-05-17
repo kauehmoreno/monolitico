@@ -67,3 +67,9 @@ class Materia(models.Model):
                 self.cover, self.data_publicacao
             ]
         ))
+
+def integrate_all(modeladmin, request, queryset):
+    for materia in queryset:
+        materia.save()
+
+integrate_all.short_description = 'Integração com Microserviço'
